@@ -12,16 +12,14 @@ class Seed
         latitude: Faker::Address.latitude,
         longitude: Faker::Address.longitude
       )
-      3.times do
-        location.articles.create!(
-          url: Faker::Internet.url,
-          title: Faker::Lorem.sentence,
-          body: Faker::Lorem.paragraph
-        )
-      end
       puts location.name
     end
   end
+
+  User.destroy_all
+  User.create(name: 'bugs', email: 'bugs@rubyplus.com', password: '123456')
+  User.create(name: 'daffy', email: 'daffy@rubyplus.com', password: '123456')
+
 end
 
 Seed.begin

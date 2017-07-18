@@ -1,4 +1,6 @@
-class LocationsController < ApplicationController
+class LocationsController < ApiController
+  before_action :require_login, except: [:index, :show]
+
   def index
     @locations = Location.all
     json_response(@locations)
@@ -6,6 +8,7 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
+    News.get_news(@location)
     json_response(@location)
   end
 
